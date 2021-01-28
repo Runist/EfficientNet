@@ -11,29 +11,6 @@ import pandas as pd
 import cv2 as cv
 
 
-def read_csv_data(csv_path, label):
-    csv = pd.read_csv(csv_path)
-
-    rate = int(0.9 * len(csv))
-    train_csv = np.array(csv[1: rate])
-    validation_csv = np.array(csv[rate:])
-
-    train_data = list()
-    validation_data = list()
-
-    for line in train_csv:
-        img_path = "./dataset/train/" + line[0]
-        index = label.index(line[1])
-        train_data.append((img_path, index))
-
-    for line in validation_csv:
-        img_path = "./dataset/train/" + line[0]
-        index = label.index(line[1])
-        validation_data.append((img_path, index))
-
-    return train_data, validation_data
-
-
 def read_data(path):
     """
     读取数据，传回图片完整路径列表 和 仅有数字索引列表
@@ -41,7 +18,7 @@ def read_data(path):
     :return: 图片路径列表、数字索引列表
     """
     data = list()
-    class_list = os.listdir(path)
+    class_list = sorted(os.listdir(path))
 
     for i, value in enumerate(class_list):
         dirs = os.path.join(path, value)
@@ -68,16 +45,6 @@ def parse(img_path, resolution, class_num=None, label=None, mode='train'):
 
     # 在训练集中，有50%的概率增强数据
     if mode == 'train' and np.random.random() < 0.5:
-        # h, w, c = image.shape
-        # grad_img = image.numpy().copy()
-        #
-        # for i in range(w):
-        #     v = (256 / w)*i
-        #     grad_img[:, i, :] = v
-        #
-        # image = cv.addWeighted(src1=image.numpy(), src2=grad_img, alpha=1.0, beta=0.5, gamma=0.0)
-        # image = tf.convert_to_tensor(image, dtype=tf.float32)
-
         if np.random.random() < 0.5:
             image = tf.image.random_flip_left_right(image)
         if np.random.random() < 0.5:

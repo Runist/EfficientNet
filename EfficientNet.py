@@ -251,7 +251,6 @@ def EfficientNet(width_coefficient,
                      name='logits')(x)
 
     model = models.Model(img_input, x, name=model_name)
-    model.summary()
 
     return model
 

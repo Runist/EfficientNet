@@ -43,7 +43,7 @@ def main():
     cbk = [callbacks.ModelCheckpoint("Efn-B0.h5", save_weights_only=True, save_best_only=True),
            callbacks.ReduceLROnPlateau(monitor='loss',
                                        factor=0.5,
-                                       patience=2)]
+                                       patience=4)]
     model.fit(train_dataset,
               steps_per_epoch=train_step,
               epochs=epochs,
