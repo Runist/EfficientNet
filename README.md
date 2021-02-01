@@ -30,7 +30,7 @@ Something you need to change:
 - train.py
 
 ```python
-train_dir = r'D:\Python_Code\BasicNet\dataset\train'		# chang to your dataset directory
+train_dir = r'D:\Python_Code\BasicNet\dataset\train'		# change to your dataset directory
 val_dir = r'D:\Python_Code\BasicNet\dataset\validation'
 ```
 
