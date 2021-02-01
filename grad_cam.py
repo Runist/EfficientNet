@@ -68,7 +68,7 @@ def make_gradcam_heatmap(img_array, model, last_conv_layer_name, classifier_laye
 
 def main():
 
-    img_path = r"D:\Python_Code\BasicNet\dataset\sunflower.jpg"
+    img_path = r"daisy.jpg"
     resolution = 224
     last_conv_layer_name = 'top_activation'
     classifier_layer_names = ['avg_pool', 'top_dropout', 'logits']
@@ -78,14 +78,13 @@ def main():
 
     # 建立模型
     model = efn.EfficientNetB0(alpha=1.0, beta=1.0, r=224, classes=5)
-    model.summary()
     model.load_weights("Efn-B0.h5")
 
     # 生成热力图
     heatmap = make_gradcam_heatmap(tf.expand_dims(image, axis=0), model,
                                    last_conv_layer_name, classifier_layer_names)
     plt.matshow(heatmap)
-    plt.show()
+    # plt.show()
 
     # 将热图重新缩放到0-255的范围内
     heatmap = np.uint8(255 * heatmap)

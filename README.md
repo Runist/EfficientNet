@@ -56,3 +56,22 @@ And then
 $ python predict.py
 ```
 
+## 4. See the features you learned from the network.
+
+Again, you need to modify the path of image:
+
+- gard_cam.py
+
+```python
+img_path = r'Your test image path.'
+```
+
+After that
+
+```
+$ python predict.py
+```
+
+You will get a heat map. and the redder the area, the more prominent the feature.
+
+![heat_map.jpg](https://i.loli.net/2021/02/01/thlB5uQPFxAndOE.jpg)

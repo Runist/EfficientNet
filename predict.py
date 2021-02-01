@@ -18,7 +18,7 @@ def main():
         for gpu in gpus:
             tf.config.experimental.set_memory_growth(gpu, True)
 
-    img_path = r'D:\Python_Code\BasicNet\dataset\sunflower.jpg'
+    img_path = r'daisy.jpg'
     resolution = 224
     class_name = ['daisy', 'dandelion', 'roses', 'sunflowers', 'tulips']
     num_classes = len(class_name)
@@ -28,10 +28,13 @@ def main():
 
     image = parse(img_path, resolution, mode='test')
     image = tf.expand_dims(image, axis=0)
-    pred = np.squeeze(model.predict(image))
+    logit = model.predict(image)
+    pred = np.squeeze(tf.nn.softmax(logit))
     index = int(np.argmax(pred))
+    conf = np.max(pred)
 
-    print(class_name[index])
+    print("Input image is {}, predict is {}, confidence is {:.2f}".format(os.path.basename(img_path),
+                                                                          class_name[index], conf))
 
 
 if __name__ == '__main__':
