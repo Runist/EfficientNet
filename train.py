@@ -18,8 +18,8 @@ def main():
         for gpu in gpus:
             tf.config.experimental.set_memory_growth(gpu, True)
 
-    train_dir = r'D:\Python_Code\BasicNet\dataset\train'
-    val_dir = r'D:\Python_Code\BasicNet\dataset\validation'
+    train_dir = r'C:\Software\Code\Work_Python\BasicNet\dataset\train'
+    val_dir = r'C:\Software\Code\Work_Python\BasicNet\dataset\validation'
     epochs = 50
     batch_size = 4
     lr = 1e-4

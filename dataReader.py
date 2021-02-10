@@ -7,8 +7,6 @@
 import os
 import numpy as np
 import tensorflow as tf
-import pandas as pd
-import cv2 as cv
 
 
 def read_data(path):
